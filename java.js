@@ -1,94 +1,108 @@
-
-const scroll = new LocomotiveScroll({
-    el: document.querySelector('#main'),
-    smooth: true
-});
-
-
-var elemC = document.querySelector("#elem-container")
-var fixed = document.querySelector("#fixed-image")
-elemC.addEventListener("mouseenter", function () {
-    fixed.style.display = "block"
-})
-elemC.addEventListener("mouseleave", function () {
-    fixed.style.display = "none"
-})
-
-var elems=document.querySelectorAll(".cont")
-elems.forEach(function(e){
-    e.addEventListener("mouseenter",function(){
-  var image = e.getAttribute("data-image")
-  console.log(image)
-   fixed.style.backgroundImage = `url(${image})`
-    })
-})
-
-// var im= document.querySelectorall(".maincontainer .right img")
-// var sel=document.querySelectorall(".maincontainer .left .title h1")
-// sel.forEach(function(i){
-//     i.addEventListener("mouseenter",function(){
- 
-//     })
-// })
-
-// document.getElementById('design').addEventListener('click', function() {
-//     document.getElementsByClassName('design').classList.remove('hidden');
-//     document.getElementsByClassName('project').classList.add('hidden');
-//     document.getElementsByClassName('execution').classList.add('hidden');
+// const scroll = new LocomotiveScroll({
+//     el: document.querySelector('#main'),
+//     smooth: true
 // });
 
-// document.getElementById('project').addEventListener('click', function() {
-//     document.getElementsByClassName('design').classList.add('hidden');
-//     document.getElementsByClassName('project').classList.remove('hidden');
-//     document.getElementsByClassName('execution').classList.add('hidden');
-// });
+// loader
+function loader() {
 
-// document.getElementById('executionTrigger').addEventListener('click', function() {
-//     document.getElementsByClassName('design').classList.add('hidden');
-//     document.getElementsByClassName('project').classList.add('hidden');
-//     document.getElementsByClassName('execution').classList.remove('hidden');
-// });
+  // first approach 
+  // var loading = document.querySelector(".loader");
+  // setTimeout(function(){
+  //   loading.style.top = "-100%"
+  // });
 
-function showSection(section) {
-    const sections = ['design', 'project', 'execution'];
-    sections.forEach(sec => {
-        const elements = document.getElementsByClassName(sec);
-        for (let i = 0; i < elements.length; i++) {
-            elements[i].style.display = "none";
-        }
+
+  // second Approach
+  let loading = document.querySelector(".loader");
+  let h1 = loading.querySelector("h2");
+  function textChange() {
+    // console.log("no error");
+    setTimeout(function () {
+      h1.innerText = "EXPERIENCES";
+    }, 1000);
+    setTimeout(function () {
+      h1.innerText = "CONTENTS";
+    }, 2000);
+  }
+  textChange();
+  setTimeout(function () {
+    loading.style.top = "-100%";
+  }, 3000);
+}
+loader();
+
+function section3Img() {
+  var projectFeature = document.querySelector(".project-feature");
+  var imageSection = a.getAttribute(".imageSection3");
+
+  projectFeature.addEventListener("mouseenter", function () {
+    imageSection.style.display = "block";
+  });
+
+  projectFeature.addEventListener("mouseleave", function () {
+    imageSection.style.display = "none";
+  });
+
+  var projects = document.querySelector("#project1");
+  projects.forEach(function (p) {
+    p.addEventListener("mouseenter", function () {
+      var image = p.getAttribute(".project-img > img");
+      imageSection.style.backgroundImage = `url(${image})`;
     });
-    const activeElements = document.getElementsByClassName(section);
-    for (let i = 0; i < activeElements.length; i++) {
-        activeElements[i].style.display = "block";
-        document.getElementById(section).style.color="white"
-    }
+  });
 }
 
-document.getElementById('design').addEventListener('click', function() {
-    showSection('design');
-});
+section3Img();
 
-document.getElementById('project').addEventListener('click', function() {
-    showSection('project');
-});
+function swiper() {
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 100,
+  });
+}
+swiper();
 
-document.getElementById('execution').addEventListener('click', function() {
-    showSection('execution');
-});
+// function swiper() {
+//     var mySwiper = new Swiper(".mySwiper", {
+//       slidesPerView: "auto",
+//       spaceBetween: 50,
+//       navigation: {
+//         nextEl: '.swiper-button-next',
+//         prevEl: '.swiper-button-prev',
+//       },
+//       pagination: {
+//         el: '.swiper-pagination',
+//         clickable: true,
+//       },
+//       mousewheel: true, // Enable mousewheel control
+//     });
+//   }
+
+//   document.addEventListener('DOMContentLoaded', function () {
+//     swiper();
+//   });
 
 
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: "auto",
-  centeredSlides: true,
-  spaceBetween: 30,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-});
+function menuAnimation() {
+
+  var menu = document.querySelector("nav h3")
+  var full = document.querySelector(".menu-screen")
+  var navimg = document.querySelector("nav img")
+  var flag = 0
+  menu.addEventListener("click", function () {
+      if (flag == 0) {
+          full.style.top = 0
+          navimg.style.opacity = 0
+          flag = 1
+      } else {
+          full.style.top = "-100%"
+          navimg.style.opacity = 1
+          flag = 0
+      }
+  })
+}
 
 
-var loader = document.querySelector("#loader")
-setTimeout(function () {
-    loader.style.top = "-100%"
-}, 4200)
+menuAnimation();
